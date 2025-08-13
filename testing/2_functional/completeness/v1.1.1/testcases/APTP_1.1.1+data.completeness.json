@@ -8,10 +8,10 @@
 			},
 			{
 				"serverName": "aptp",
-				"server": "http://127.0.0.1:4020",
+				"server": "http://127.0.0.1:4009",
 				"authorizationCode": "Basic_Auth",
 				"operationKey": "Operation key not yet provided.",
-				"userName": "Thorsten Heinze",
+				"userName": "Ana Cabello Barrera",
 				"originator": "APTP_1.0.0+testcase.completeness",
 				"xCorrelator": "00000000-0000-0000-0000-000000000000",
 				"traceIndicator": "1",
@@ -19,7 +19,7 @@
 			},
 			{
 				"serverName": "aptpSimulator",
-				"server": "http://localhost:3002",
+				"server": "http://localhost:3004",
 				"authorizationCode": "Basic_Auth",
 				"operationKey": "Operation key not yet provided.",
 				"userName": "Thorsten Heinze",
@@ -31,10 +31,19 @@
 		],
 		"collectionInputList": [
 			{
-				"collectionName": "Completeness",
+				"collectionName": "AptpCompleteness",
 				"serverToBeApplied": "aptpSimulator",
-				"mountName": "0001",
+				"mountName": "000250000",
+				"linkId": "000550000",
 				"kindOfReference": "static",
+				"suffixUrlEncodingIsRequired": false
+			},
+			{
+				"collectionName": "AptpImplementationCompleteness",
+				"serverToBeApplied": "aptp",
+				"mountName": "101552951A",
+				"linkId": "101552950",
+				"kindOfReference": "dynamic",
 				"suffixUrlEncodingIsRequired": false
 			}
 		]
