@@ -37,11 +37,17 @@ jobs:
         run: |
           cd server
           node index.js &
-      - name: Wait for Mockoon-MWDI-Simulator and APTP
+      - name: Debug server availability
         run: |
-          echo "Giving Mockoon and APTP a few seconds to start..."
+          echo "Waiting 5 seconds for services to start..."
           sleep 5
-          npx wait-on --timeout 60000 http://127.0.0.1:3002 http://127.0.0.1:4009
+      
+          echo "Checking Mockoon at port 3002..."
+          curl -v http://localhost:3002 || echo "❌ Could not connect to Mockoon"
+      
+          echo "Checking APTP at port 4009..."
+          curl -v http://localhost:4009 || echo "❌ Could not connect to APTP"
+
       - name: Run Postman tests
         run: |
           newman run testing/2_functional/completeness/v1.1.1/testcases/APTP_3rd+testcase.completeness\ Copy.postman_collection.json \
