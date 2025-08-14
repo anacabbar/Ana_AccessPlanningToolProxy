@@ -23,7 +23,7 @@ jobs:
       - name: Start Mockoon server
         run: |
           mockoon-cli start \
-            --data-file testing/2_functional/completeness/v1.1.1/simulators/MicrowaveDeviceInventory+MockServer.json \
+            -d testing/2_functional/completeness/v1.1.1/simulators/MicrowaveDeviceInventory+MockServer.json \
             --port 3002 \
             --hostname localhost &
       - name: Swap config & disable security validation
