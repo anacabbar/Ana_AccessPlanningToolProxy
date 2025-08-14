@@ -19,9 +19,11 @@ jobs:
       - name: Install Mockoon CLI
         run: npm install -g @mockoon/cli
       - name: Start Mockoon server
-        run: mockoon-cli start \
-               --data testing/2_functional/completeness/v1.1.1/simulators/MicrowaveDeviceInventory+MockServer.json \
-               --port 3002 --hostname localhost &
+        run: |
+          mockoon-cli start \
+            --data testing/2_functional/completeness/v1.1.1/simulators/MicrowaveDeviceInventory+MockServer.json \
+            --port 3002 \
+            --hostname localhost &
       - name: Swap config & disable security validation
         run: |
           # 1. Replace the real config with the test config
