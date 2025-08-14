@@ -34,7 +34,7 @@ jobs:
           # 2. Uncomment the security validation bypass in index.js
           sed -i 's|//appCommons.openApiValidatorOptions.validateSecurity = false;|appCommons.openApiValidatorOptions.validateSecurity = false;|' server/index.js
       - name: Start Node.js app
-        run: node app/index.js &
+        run: node server/index.js &
       - name: Wait for Mockoon-MWDI-Simulator and APTP
         run: |
           npx wait-on http://localhost:3002
