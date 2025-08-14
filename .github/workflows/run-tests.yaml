@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "Giving Mockoon and APTP a few seconds to start..."
           sleep 5
-          npx wait-on --timeout 15000 http://localhost:3002 http://localhost:4009
+          npx wait-on --timeout 60000 http://localhost:3002 http://localhost:4009
       - name: Run Postman tests
         run: |
           newman run testing/2_functional/completeness/v1.1.1/testcases/APTP_3rd+testcase.completeness\ Copy.postman_collection.json \
