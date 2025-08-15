@@ -16,6 +16,8 @@ jobs:
       - name: Install app dependencies
         working-directory: server
         run: npm ci
+      - name: Install Newman
+        run: npm install -g newman@6
       - name: Install Mockoon CLI
         run: npm install -g @mockoon/cli
       - name: Start Mockoon server
