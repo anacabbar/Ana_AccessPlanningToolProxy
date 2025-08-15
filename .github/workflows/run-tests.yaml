@@ -24,13 +24,21 @@ jobs:
             -d testing/2_functional/completeness/v1.1.1/simulators/MicrowaveDeviceInventory+MockServer.json \
             --port 3002 \
             --hostname localhost &
+
       - name: Swap config & disable security validation
         run: |
-          # 1. Replace the real config with the test config
+          echo "1. Replacing real config with test config..."
           cp testing/2_functional/completeness/v1.1.1/simulators/config_test.json server/database/config.json
       
-          # 2. Uncomment the security validation bypass in index.js
-          sed -i 's|//appCommons.openApiValidatorOptions.validateSecurity = false;|appCommons.openApiValidatorOptions.validateSecurity = false;|' server/index.js
+          echo "2. Uncommenting security validation bypass in index.js..."
+          # Backup the original index.js just in case
+          cp server/index.js server/index.js.bak
+      
+          # Uncomment the security bypass line reliably
+          sed -i 's|^\s*//\s*appCommons.openApiValidatorOptions.validateSecurity\s*=\s*false;|appCommons.openApiValidatorOptions.validateSecurity = false;|' server/index.js
+      
+          echo "Security validation bypass enabled."
+            
       - name: Start Node.js app
         run: |
           cd server
