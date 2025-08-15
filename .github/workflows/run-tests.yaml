@@ -58,16 +58,7 @@ jobs:
       
           echo "Checking APTP at port 4009..."
           curl -v http://localhost:4009 || echo "❌ Could not connect to APTP"
-      - name: Diagnostics before tests
-        run: |
-          echo "Sleeping 5 extra seconds..."
-          sleep 5  
-          echo
-          echo "=== Checking failing POST endpoint with expected body ==="
-          curl -i -X POST http://localhost:4009/v1/check-registered-availability-of-device \
-            -H "Content-Type: application/json" \
-            -d '{"mountName": "000250000"}'
-
+          
       - name: Run Postman tests
         run: |
           newman run testing/2_functional/completeness/v1.1.1/testcases/APTP_3rd+testcase.completeness\ Copy.postman_collection.json \
