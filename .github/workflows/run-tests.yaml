@@ -50,6 +50,26 @@ jobs:
       
           echo "Checking APTP at port 4009..."
           curl -v http://localhost:4009 || echo "❌ Could not connect to APTP"
+      - name: Diagnostics before tests
+        run: |
+          echo "Sleeping 5 extra seconds..."
+          sleep 5
+  
+          echo "=== CONFIG FILE CONTENTS ==="
+          cat server/database/config.json || echo "Config file not found!"
+  
+          echo
+          echo "=== Checking Mockoon root ==="
+          curl -i http://localhost:3002/
+  
+          echo
+          echo "=== Checking APTP root ==="
+          curl -i http://localhost:4009/
+  
+          echo
+          echo "=== Checking failing endpoint ==="
+          curl -i http://localhost:4009/v1/check-registered-availability-of-device
+
       - name: Run Postman tests
         run: |
           newman run testing/2_functional/completeness/v1.1.1/testcases/APTP_3rd+testcase.completeness\ Copy.postman_collection.json \
